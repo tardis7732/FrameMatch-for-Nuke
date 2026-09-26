@@ -2,7 +2,7 @@
 
 [한국어](README.md) · [English](README.en.md)
 
-변경 영상의 위치와 시간을 원본에 맞추고, 빠진 프레임을 채웁니다.
+Seedance 같은 SaaS 영상 편집 플랫폼에서 발생한 프레임 드랍·홀드를 원본 영상과 비교해 찾고, RIFE로 자동 보간하는 Nuke 툴킷입니다.
 
 [![FrameMatch 데모 영상](docs/images/demo-preview.gif)](docs/media/FrameMatch_Demo.mp4)
 

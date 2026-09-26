@@ -2,7 +2,7 @@
 
 [한국어](README.md) · [English](README.en.md)
 
-Align an edited clip to its original timeline and fill missing frames.
+A Nuke toolkit that detects dropped and held frames in video edits from platforms such as Seedance by comparing them with the original footage, then automatically fills gaps using RIFE interpolation.
 
 [![FrameMatch demo video](docs/images/demo-preview.gif)](docs/media/FrameMatch_Demo.mp4)
 

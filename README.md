@@ -14,7 +14,8 @@
 
 1. [최신 릴리스](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest)에서 **FrameMatch-Windows.zip**을 받아 압축을 풉니다.
 2. NukeX와 [Cattery RIFE](https://github.com/rafaelperez/RIFE-for-Nuke#installation)를 준비합니다. RIFE 모델은 별도 설치입니다.
-3. `Open_FrameMatch_NukeX.cmd` 실행 → Tab → **FrameMatch**.
+3. [설치 방법](docs/USAGE.md#설치와-실행)에 따라 Python·gizmo와 OFX를 등록합니다.
+4. NukeX를 열고 Tab → **FrameMatch**.
 
 ## 사용법
 
@@ -45,7 +46,7 @@ RIFE는 **입력 하나**에서 양끝 정상 프레임을 가져옵니다. 출�
 
 ## 예제
 
-같은 [릴리스](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest)의 **FrameMatch-Sample-Media.zip**을 프로그램 폴더에 풀고 `Open_Demo_NukeX.cmd`를 실행하세요.
+같은 [릴리스](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest)의 **FrameMatch-Sample-Media.zip**을 패키지 폴더에 풀고, NukeX에서 `examples/FrameMatch_demo.nk`를 여세요.
 
 **Source 252프레임 + Change 249프레임(ProRes)**과 연결된 예제 프로젝트를 제공합니다. 데모는 실제 Nuke 출력이며, 155프레임을 154·156으로 보간하는 장면을 포함합니다.
 

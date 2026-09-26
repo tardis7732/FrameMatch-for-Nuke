@@ -6,21 +6,28 @@
 
 Use Windows x64 and NukeX. This package was tested with **NukeX 17.0v3**. Install [Cattery RIFE](https://github.com/rafaelperez/RIFE-for-Nuke#installation) separately; its `RIFE.cat` must be discoverable through Nuke's plugin paths. Model weights are not bundled.
 
-Extract **FrameMatch-Windows.zip** and run `Open_FrameMatch_NukeX.cmd`, then use Tab → **FrameMatch**, or **Time → FrameMatch**. The launcher sets paths for this session; it does not edit `.nuke` or permanent environment settings.
+Extract **FrameMatch-Windows.zip** and install it as follows.
 
-To select a specific Nuke installation:
+1. Copy the package's `nuke` folder into your user `.nuke` folder and rename the copied folder to `FrameMatch`. The usual location is `%USERPROFILE%\.nuke\FrameMatch`, containing `menu.py`, `init.py`, Python files, and the gizmo.
+2. Add the following to your user `.nuke/init.py`. Create the file if needed; preserve existing contents.
 
-```powershell
-.\Open_FrameMatch_NukeX.cmd -NukeExe 'C:\Program Files\Nuke17.0v3\Nuke17.0.exe'
+```python
+import nuke
+nuke.pluginAddPath('./FrameMatch')
 ```
 
-For a studio launcher, add the package's `nuke` directory to `NUKE_PATH` and its `ofx` directory to `OFX_PLUGIN_PATH` **before Nuke starts**. `examples/FrameMatch.nk` contains a fresh analysis node.
+3. Copy the entire `ofx/FrameMatch.ofx.bundle` folder into `C:\Program Files\Common Files\OFX\Plugins`. The binary should end up at `...\Plugins\FrameMatch.ofx.bundle\Contents\Win64\FrameMatch.ofx`.
+4. Restart NukeX and use Tab → **FrameMatch**, or **Time → FrameMatch**.
+
+Instead of using the common OFX folder, you can add the absolute path of the package's `ofx` folder to `OFX_PLUGIN_PATH` before starting Nuke. For Python files, you can likewise add the package's `nuke` folder to `NUKE_PATH` instead of copying it. Preserve existing environment variable values.
+
+If your user home is customized, use your actual `.nuke` location. See Foundry's [plugin installation](https://learn.foundry.com/nuke/developers/80/pythondevguide/installing_plugins.html) and [OFX loading](https://learn.foundry.com/nuke/content/comp_environment/configuring_nuke/loading_ofx_plugins.html) documentation. `examples/FrameMatch.nk` contains a fresh analysis node.
 
 ## Open the example
 
 1. Download **FrameMatch-Sample-Media.zip** from the same release.
 2. Extract it into the package folder. Check for `examples/media/source.mp4` and `examples/media/change_prores.mov`.
-3. Run `Open_Demo_NukeX.cmd` to open `examples/FrameMatch_demo.nk`.
+3. Use **File → Open** in NukeX to open `examples/FrameMatch_demo.nk`.
 4. Viewer input 1 is the RIFE result, 2 is Source, and 3 is TimeWarp. Compare frames 154–156 to inspect interpolation at frame 155.
 
 Source contains 252 frames and Change contains 249, at 24 fps. The project includes stored analysis and connected outputs.
@@ -109,8 +116,8 @@ These are candidates, not ground-truth accuracy or error probabilities. Inspect 
 
 | Symptom | Check |
 | --- | --- |
-| No FrameMatch menu | Start through the launcher; verify `NUKE_PATH` |
-| Unknown OFX | Set `OFX_PLUGIN_PATH` before startup; use the Windows x64 binary |
+| No FrameMatch menu | Check registration in `.nuke/init.py` or `NUKE_PATH`, then restart Nuke |
+| Unknown OFX | Check the bundle in the common OFX folder or `OFX_PLUGIN_PATH` before startup; use the Windows x64 binary |
 | MatchGrade unavailable / Align fails | Use NukeX with a valid license; check both reference frames |
 | Missing RIFE / RIFE.cat | Install Cattery RIFE and register its model search path |
 | `outputFrameText` validate warning | Restart with this package and regenerate older RIFE exports |

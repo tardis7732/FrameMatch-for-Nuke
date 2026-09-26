@@ -6,21 +6,28 @@
 
 Windows x64와 NukeX가 필요합니다. **NukeX 17.0v3**에서 확인했습니다. [Cattery RIFE](https://github.com/rafaelperez/RIFE-for-Nuke#installation)를 별도로 설치하고, Nuke의 플러그인 경로에서 `RIFE.cat`을 찾을 수 있도록 설정하세요. 모델 가중치는 이 패키지에 포함하지 않습니다.
 
-릴리스의 **FrameMatch-Windows.zip**을 풀고 `Open_FrameMatch_NukeX.cmd`를 실행합니다. 노드 그래프에서 Tab → **FrameMatch**, 또는 **Time → FrameMatch** 메뉴로 생성합니다. 런처는 해당 실행에만 경로를 설정하며 `.nuke`나 시스템 환경 변수를 수정하지 않습니다.
+릴리스의 **FrameMatch-Windows.zip**을 풀고 다음과 같이 설치합니다.
 
-Nuke 설치 경로를 지정하려면:
+1. 패키지의 `nuke` 폴더를 사용자 `.nuke` 안에 복사하고 폴더 이름을 `FrameMatch`로 바꿉니다. 일반적인 위치는 `%USERPROFILE%\.nuke\FrameMatch`이며, 그 안에 `menu.py`, `init.py`, Python 파일과 gizmo가 있어야 합니다.
+2. 사용자 `.nuke/init.py`에 아래 코드를 추가합니다. 파일이 없으면 만들고, 기존 내용은 유지하세요.
 
-```powershell
-.\Open_FrameMatch_NukeX.cmd -NukeExe 'C:\Program Files\Nuke17.0v3\Nuke17.0.exe'
+```python
+import nuke
+nuke.pluginAddPath('./FrameMatch')
 ```
 
-기존 스튜디오 런처를 사용한다면 Nuke가 시작되기 전에 패키지의 `nuke` 폴더를 `NUKE_PATH`, `ofx` 폴더를 `OFX_PLUGIN_PATH`에 추가하세요. `examples/FrameMatch.nk`에는 분석 전 노드가 있습니다.
+3. 패키지의 `ofx/FrameMatch.ofx.bundle` 폴더 전체를 `C:\Program Files\Common Files\OFX\Plugins`에 복사합니다. 최종 파일 위치는 `...\Plugins\FrameMatch.ofx.bundle\Contents\Win64\FrameMatch.ofx`입니다.
+4. NukeX를 다시 열고 Tab → **FrameMatch**, 또는 **Time → FrameMatch** 메뉴로 생성합니다.
+
+공용 OFX 폴더 대신 환경 변수로 관리하려면 Nuke 실행 전에 `OFX_PLUGIN_PATH`에 패키지의 `ofx` 폴더 절대 경로를 추가하세요. Python 파일도 복사 대신 패키지의 `nuke` 폴더를 `NUKE_PATH`에 추가할 수 있습니다. 기존 환경 변수 값은 유지하세요.
+
+사용자 홈을 별도로 설정한 환경에서는 실제 `.nuke` 위치를 사용하세요. [Foundry 플러그인 설치](https://learn.foundry.com/nuke/developers/80/pythondevguide/installing_plugins.html)와 [OFX 로딩](https://learn.foundry.com/nuke/content/comp_environment/configuring_nuke/loading_ofx_plugins.html) 문서도 참고할 수 있습니다. `examples/FrameMatch.nk`에는 분석 전 노드가 있습니다.
 
 ## 예제 열기
 
 1. 같은 릴리스에서 **FrameMatch-Sample-Media.zip**을 받습니다.
 2. 프로그램 폴더에 압축을 풉니다. `examples/media/source.mp4`와 `examples/media/change_prores.mov`가 있어야 합니다.
-3. `Open_Demo_NukeX.cmd`를 실행합니다. 연결된 프로젝트 `examples/FrameMatch_demo.nk`가 열립니다.
+3. NukeX의 **File → Open**으로 `examples/FrameMatch_demo.nk`를 엽니다.
 4. Viewer 입력 1은 RIFE 결과, 2는 Source, 3은 TimeWarp입니다. 154–156프레임을 비교하면 155프레임의 보간을 확인할 수 있습니다.
 
 Source는 252프레임, Change는 249프레임입니다. 영상 FPS는 24이며 프로젝트에 분석 데이터와 출력 체인이 저장되어 있습니다.
@@ -109,8 +116,8 @@ Nuke 내부의 C++ OFX가 영상 특징으로 정방향 대응을 찾고, 서로
 
 | 증상 | 확인할 내용 |
 | --- | --- |
-| FrameMatch 메뉴가 없음 | 제공 런처로 시작했는지, `NUKE_PATH`가 맞는지 확인 |
-| OFX 노드를 찾지 못함 | 시작 전에 `OFX_PLUGIN_PATH` 설정. Windows x64 바이너리 사용 |
+| FrameMatch 메뉴가 없음 | `.nuke/init.py`의 등록 경로 또는 `NUKE_PATH`를 확인하고 Nuke 재시작 |
+| OFX 노드를 찾지 못함 | 공용 OFX 폴더의 bundle 위치 또는 시작 전 `OFX_PLUGIN_PATH` 설정 확인. Windows x64 바이너리 사용 |
 | MatchGrade가 없거나 Align 실패 | NukeX 라이선스와 두 입력의 기준 프레임 확인 |
 | RIFE 또는 RIFE.cat을 찾지 못함 | Cattery RIFE 설치와 모델 검색 경로 확인 |
 | `outputFrameText` validate 경고 | 현재 패키지로 다시 시작하고 이전 RIFE 출력을 재생성 |

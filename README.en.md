@@ -14,7 +14,8 @@ Align an edited clip to its original timeline and fill missing frames.
 
 1. Download **FrameMatch-Windows.zip** from the [latest release](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest) and extract it.
 2. Install NukeX and [Cattery RIFE](https://github.com/rafaelperez/RIFE-for-Nuke#installation). RIFE model weights are installed separately.
-3. Run `Open_FrameMatch_NukeX.cmd` → Tab → **FrameMatch**.
+3. Register the Python/gizmo files and OFX using the [installation guide](docs/USAGE.en.md#install-and-launch).
+4. Open NukeX → Tab → **FrameMatch**.
 
 ## Usage
 
@@ -45,7 +46,7 @@ See the [full guide](docs/USAGE.en.md) for installation paths, mask behavior, re
 
 ## Example
 
-Extract **FrameMatch-Sample-Media.zip** from the same [release](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest) into the package folder, then run `Open_Demo_NukeX.cmd`.
+Extract **FrameMatch-Sample-Media.zip** from the same [release](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest) into the package folder, then open `examples/FrameMatch_demo.nk` in NukeX.
 
 Includes **252 Source frames + 249 Change frames (ProRes)** and a connected example project. The demo uses real Nuke renders, including frame 155 interpolated from frames 154 and 156.
 

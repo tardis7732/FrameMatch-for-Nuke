@@ -10,6 +10,8 @@ Align an edited clip to its original timeline and fill missing frames.
 
 **Align → TimeWarp → RIFE** — analyze in one node, then export editable Nuke nodes. No color matching is applied.
 
+![FrameMatch node and analysis results](docs/images/framematch-node.png)
+
 ## Get started
 
 1. Download **FrameMatch-Windows.zip** from the [latest release](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest) and extract it.

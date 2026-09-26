@@ -10,6 +10,8 @@
 
 **Align → TimeWarp → RIFE** — 한 노드에서 분석하고, 편집 가능한 Nuke 노드로 내보냅니다. 색상은 변경하지 않습니다.
 
+![FrameMatch 노드와 분석 결과](docs/images/framematch-node.png)
+
 ## 시작하기
 
 1. [최신 릴리스](https://github.com/tardis7732/FrameMatch-for-Nuke/releases/latest)에서 **FrameMatch-Windows.zip**을 받아 압축을 풉니다.

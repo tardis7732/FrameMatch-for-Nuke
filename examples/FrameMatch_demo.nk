@@ -1,0 +1,1044 @@
+#! C:/Program Files/Nuke17.0v3/nuke-17.0.3.dll -nx
+version 17.0 v3
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="0" y="0" w="2557" h="1361" screen="0">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="2513" stretch="1"/>
+            <splitter orientation="1">
+                <split size="1946"/>
+                <splitter orientation="2">
+                    <split size="1145"/>
+                    <dock id="" activePageId="Viewer.1">
+                        <page id="Viewer.1"/>
+                    </dock>
+                    <split size="174"/>
+                    <dock id="" activePageId="DopeSheet.1">
+                        <page id="Curve Editor.1"/>
+                        <page id="DopeSheet.1"/>
+                    </dock>
+                </splitter>
+                <split size="563"/>
+                <dock id="" activePageId="Properties.1">
+                    <page id="Properties.1"/>
+                </dock>
+            </splitter>
+        </splitter>
+    </window>
+    <window x="2559" y="239" w="1200" h="1121" screen="1">
+        <splitter orientation="1">
+            <split size="1200"/>
+            <dock id="" activePageId="DAG.1">
+                <page id="DAG.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name FrameMatch_demo.nk
+ frame 155
+ last_frame 252
+ lock_range true
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ monitorOutLUT rec709
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Roto {
+ inputs 0
+ output alpha
+ curves {{{v x3f99999a}
+  {f 0}
+  {n
+   {layer Root
+    {f 2097152}
+    {t x44800000 x44428000}
+    {a pt1x 0 pt1y 0 pt2x 0 pt2y 0 pt3x 0 pt3y 0 pt4x 0 pt4y 0 ptex00 0 ptex01 0 ptex02 0 ptex03 0 ptex10 0 ptex11 0 ptex12 0 ptex13 0 ptex20 0 ptex21 0 ptex22 0 ptex23 0 ptex30 0 ptex31 0 ptex32 0 ptex33 0 ptof1x 0 ptof1y 0 ptof2x 0 ptof2y 0 ptof3x 0 ptof3y 0 ptof4x 0 ptof4y 0 pterr 0 ptrefset 0 ptmot x40800000 ptref 0}
+    {curvegroup Ellipse1 512 bezier
+     {{cc
+       {f 8192}
+       {px 1
+        {xc2a40750 0}
+        {x44502000 x43a48000}
+        {x42a40750 0}
+        {0 xc25ce9f0}
+        {x44754000 x43d68000}
+        {0 x425ce9f0}
+        {x42a40750 0}
+        {x44502000 x44044000}
+        {xc2a40750 0}
+        {0 x425ce9f0}
+        {x442b0000 x43d68000}
+        {0 xc25ce9f0}}}     idem}
+     {tx 1 x44502000 x43d68000}
+     {a osw x41200000 osf 0 str 1 spx x44800000 spy x44428000 sf x40000000 sb 1 tt x40e00000}}}}}}
+ toolbox {selectAll {
+  { selectAll str 1 ssx 1 ssy 1 sf 2 }
+  { createBezier str 1 ssx 1 ssy 1 sf 2 sb 1 tt 4 }
+  { createBezierCusped str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { createBSpline str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { createEllipse str 1 ssx 1 ssy 1 sf 2 sb 1 tt 7 }
+  { createRectangle str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { createRectangleCusped str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { createOpenSpline str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { brush str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { eraser src 2 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { clone src 1 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { reveal src 3 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { dodge src 1 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { burn src 1 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { blur src 1 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { sharpen src 1 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+  { smear src 1 str 1 ssx 1 ssy 1 sf 2 sb 1 }
+} }
+ toolbar_brush_hardness 0.200000003
+ toolbar_source_transform_scale {1 1}
+ toolbar_source_transform_center {1024 778}
+ colorOverlay {0 0 0 0}
+ lifetime_type "all frames"
+ motionblur_shutter_offset_type centred
+ source_black_outside true
+ name AlignMask
+ xpos 650
+}
+Read {
+ inputs 0
+ file_type mov
+ file "\[file dirname \[value root.name]]/media/source.mp4"
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 252
+ origlast 252
+ origset true
+ name Source
+ xpos 350
+}
+set Na3fa8000 [stack 0]
+Read {
+ inputs 0
+ file_type mov
+ file "\[file dirname \[value root.name]]/media/change_prores.mov"
+ format "1920 1080 0 0 1920 1080 1 HD_1080"
+ last 249
+ origlast 249
+ origset true
+ name Change
+ xpos 0
+}
+set N649e0000 [stack 0]
+Group {
+ inputs 3
+ name FrameMatch
+ knobChanged "import frame_match_complete as fm\nfm.changed(nuke.thisNode(),nuke.thisKnob())"
+ label "Source \[frame] -> Change \[value mapped_frame]"
+ xpos 350
+ ypos 180
+ addUserKnob {20 frame_match l "Frame Match"}
+ addUserKnob {6 fm_complete_tool l "" -STARTLINE +HIDDEN}
+ fm_complete_tool true
+ addUserKnob {6 spatial_ready l "" -STARTLINE +HIDDEN}
+ spatial_ready true
+ addUserKnob {1 spatial_data l "" +STARTLINE +HIDDEN}
+ spatial_data "\{\"Transform\": \{\"matrix\": \"\", \"translate\": \"-17.07103729 0.6553754807\", \"rotate\": \"0\", \"scale\": \"1.017075658 1.00130403\", \"skewX\": \"0\", \"skewY\": \"0\", \"skew_order\": \"XY\", \"center\": \"0 0\", \"invert_matrix\": \"false\", \"skew\": \"\", \"filter\": \"cubic\", \"clamp\": \"false\", \"black_outside\": \"true\", \"clip\": \"\", \"crop\": \"\", \"motionblur\": \"0\", \"shutter\": \"0.5\", \"shutteroffset\": \"start\", \"shuttercustomoffset\": \"0\", \"shutter_offset\": \"\", \"help\": \"\", \"updateUI\": \"\", \"autolabel\": \"\", \"panel\": \"\", \"tile_color\": \"0\", \"gl_color\": \"0\", \"note_font\": \"Verdana\", \"note_font_size\": \"11\", \"note_font_color\": \"0\", \"icon\": \"\", \"indicators\": \"0\", \"hide_input\": \"false\", \"rootNodeUpdated\": \"\", \"cached\": \"false\", \"disable\": \"false\", \"dope_sheet\": \"false\", \"bookmark\": \"false\", \"postage_stamp\": \"false\", \"postage_stamp_frame\": \"1\", \"lifetimeStart\": \"0\", \"lifetimeEnd\": \"0\", \"useLifetime\": \"false\", \"matchframe_generated\": \"true\"\}, \"Reformat\": \{\"type\": \"to box\", \"format\": \"0\", \"to\": \"\", \"full_format\": \"\", \"proxy_format\": \"\", \"box_width\": \"1920\", \"box_height\": \"1080\", \"box_fixed\": \"true\", \"box_pixel_aspect\": \"1\", \"scale\": \"1\", \"width\": \"\", \"height\": \"\", \"fixed\": \"\", \"to_format\": \"\", \"to_box\": \"\", \"to_scale\": \"\", \"resize\": \"none\", \"center\": \"false\", \"flip\": \"false\", \"flop\": \"false\", \"turn\": \"false\", \"filter\": \"cubic\", \"clamp\": \"false\", \"black_outside\": \"false\", \"clip\": \"\", \"crop\": \"\", \"pbb\": \"false\", \"help\": \"\", \"updateUI\": \"\", \"autolabel\": \"\", \"panel\": \"\", \"tile_color\": \"0\", \"gl_color\": \"0\", \"note_font\": \"Verdana\", \"note_font_size\": \"11\", \"note_font_color\": \"0\", \"icon\": \"\", \"indicators\": \"0\", \"hide_input\": \"false\", \"rootNodeUpdated\": \"\", \"cached\": \"false\", \"disable\": \"false\", \"dope_sheet\": \"false\", \"bookmark\": \"false\", \"postage_stamp\": \"false\", \"postage_stamp_frame\": \"1\", \"lifetimeStart\": \"0\", \"lifetimeEnd\": \"0\", \"useLifetime\": \"false\", \"matchframe_generated\": \"true\"\}\}"
+ addUserKnob {3 reference_frame l "Reference frame"}
+ reference_frame 1
+ addUserKnob {22 use_current l Current -STARTLINE T "import frame_match_complete as fm\nnuke.thisNode()\['reference_frame'].setValue(nuke.frame())"}
+ addUserKnob {6 use_mask l "Use mask" t "Use Mask for MatchGrade alignment only." -STARTLINE}
+ use_mask true
+ addUserKnob {22 align l "Analyze align" T "import frame_match_complete as fm\nfm.align(nuke.thisNode())" +STARTLINE}
+ addUserKnob {22 analyze l "Analyze timing" -STARTLINE T "import frame_match_complete as fm\nfm.analyze_timing(nuke.thisNode())"}
+ addUserKnob {3 source_first l "Source range"}
+ source_first 1
+ addUserKnob {3 source_last l "" -STARTLINE}
+ source_last 252
+ addUserKnob {22 reset_source l Reset -STARTLINE T "import frame_match_complete as fm\nfm.reset_range(nuke.thisNode(), 'source')"}
+ addUserKnob {3 result_first l "Change range"}
+ result_first 1
+ addUserKnob {3 result_last l "" -STARTLINE}
+ result_last 249
+ addUserKnob {22 reset_result l Reset -STARTLINE T "import frame_match_complete as fm\nfm.reset_range(nuke.thisNode(), 'result')"}
+ addUserKnob {3 mapped_frame l "Matched change frame" +HIDDEN}
+ mapped_frame {{curve K x1 1 2 3 4 5 6 7 8 9 9 10 12 13 14 15 16 17 18 19 20 21 22 23 24 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 43 44 45 46 46 47 48 49 49 51 52 53 54 55 56 57 58 60 61 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 79 80 81 82 84 85 86 87 88 89 90 91 92 93 94 95 95 97 97 98 99 100 101 102 103 104 105 107 108 109 110 111 112 113 114 115 116 117 117 118 119 120 121 122 123 124 125 126 127 128 129 131 132 133 134 135 136 137 138 139 140 141 142 143 144 144 145 146 147 148 149 150 151 152 153 154 155 156 158 159 160 161 162 163 164 165 166 167 168 168 169 170 170 171 172 173 174 176 177 178 179 181 182 183 184 185 186 187 188 188 189 190 191 192 192 193 194 195 196 197 198 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 216 217 218 219 220 221 221 222 224 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 240 241 241 242 243 244 246 247 248 249}}
+ addUserKnob {3 matched_count l "Matched source frames" +HIDDEN}
+ matched_count 233
+ addUserKnob {3 missing_count l "Missing source frames" +HIDDEN}
+ missing_count 19
+ addUserKnob {3 review_count l "Review frames" +HIDDEN}
+ review_count 59
+ addUserKnob {3 fill_count l "RIFE frames" +HIDDEN}
+ fill_count 19
+ addUserKnob {3 unresolved_count l "Without endpoints" +HIDDEN}
+ addUserKnob {26 state l Timing +HIDDEN T "Stored: aligned Change."}
+ addUserKnob {26 spatial_status l Alignment +HIDDEN T "Native MatchGrade data stored at frame 1"}
+ addUserKnob {26 exports l Export T " "}
+ addUserKnob {22 export_spatial l Align -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'spatial')"}
+ addUserKnob {22 export_timewarp l TimeWarp -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'timewarp')"}
+ addUserKnob {22 export_rife l RIFE -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'rife')"}
+ addUserKnob {22 export_all l "Export all" -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'all')"}
+ addUserKnob {26 results l "" +STARTLINE T "<table cellpadding=\"7\" bgcolor=\"#303030\"><tr><td><b>Results</b><br>Align: Frame 1 &nbsp; | &nbsp; Source 1 - 252<br><b>Matched 233 / 252</b> &nbsp; | &nbsp; Missing 19<br>RIFE: 19 frames &nbsp; | &nbsp; Without endpoints: 0<br>Review: 59 change frames</td></tr></table>"}
+ addUserKnob {20 settings l Settings}
+ addUserKnob {6 rife_gpu l "RIFE GPU" -STARTLINE}
+ rife_gpu true
+ addUserKnob {3 rife_detail l "RIFE detail" R 0 4}
+ rife_detail 3
+ addUserKnob {4 rife_downrez l "RIFE resolution" M {Full 1/2 1/4}}
+ addUserKnob {1 fm_auto_id l "" +STARTLINE +HIDDEN}
+ fm_auto_id b4c304f954db468caadba880072b43ae
+}
+ Input {
+  inputs 0
+  name Mask
+  xpos 600
+  number 2
+ }
+ Input {
+  inputs 0
+  name Source
+  xpos 300
+  number 1
+ }
+ Input {
+  inputs 0
+  name Change
+  xpos 0
+ }
+set Na3fca900 [stack 0]
+ OFXcom.matchframe.FrameMatch_v1 {
+  inputs 2
+  sourceFirst 1
+  sourceLast 252
+  resultFirst 1
+  resultLast 249
+  timingPreference 0.15
+  inputFrame {{curve x1 1 2 3 4 5 6 7 8 9 9 10 12 13 14 15 16 17 18 19 20 21 22 23 24 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 43 44 45 46 46 47 48 49 49 51 52 53 54 55 56 57 58 60 61 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 79 80 81 82 84 85 86 87 88 89 90 91 92 93 94 95 95 97 97 98 99 100 101 102 103 104 105 107 108 109 110 111 112 113 114 115 116 117 117 118 119 120 121 122 123 124 125 126 127 128 129 131 132 133 134 135 136 137 138 139 140 141 142 143 144 144 145 146 147 148 149 150 151 152 153 154 155 156 158 159 160 161 162 163 164 165 166 167 168 168 169 170 170 171 172 173 174 176 177 178 179 181 182 183 184 185 186 187 188 188 189 190 191 192 192 193 194 195 196 197 198 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 216 217 218 219 220 221 221 222 224 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 240 241 241 242 243 244 246 247 248 249}}
+  confidence {{curve x1 0.2959379796 0.1622937156 0.2043342811 0.4045206796 0.39921748 0.2874527985 0.3000176346 0.4100935843 0.313767937 0.313767937 0.1581798575 0.2474047105 0.3665804078 0.2697891597 0.2000046842 0.2293881024 0.2829360397 0.2885159742 0.2514179059 0.2313378512 0.3153551634 0.127881511 0.1896640691 0.1896640691 0.1896640691 0.1043999488 0.2107692213 0.3337194592 0.3628788131 0.4978345502 0.4651027295 0.4074081829 0.3436835442 0.4079282389 0.1182822816 0.1725585337 0.3104479606 0.4254729707 0.383885031 0.3909761004 0.4792763755 0.4870386008 0.4907638723 0.4573413387 0.4690753534 0.07471546592 0.07471546592 0.2453058593 0.3737939723 0.5258391956 0.5258391956 0.4602793725 0.4115761682 0.6016845776 0.3021428505 0.470756756 0.3490763917 0.5901311236 0.3074780888 0.2760010114 0.5060754615 0.5060754615 0.4227694405 0.282724416 0.1820855452 0.155698528 0.1456776758 0.1456776758 0.1796577928 0.2517313745 0.2998784281 0.3040201258 0.2936092781 0.42846224 0.4834766974 0.5329536436 0.5286833184 0.5347653686 0.02778724253 0.02778724253 0.02778724253 0.3577761321 0.641754937 0.6155828735 0.6535936995 0.663507495 0.6576404521 0.6835454045 0.5511430241 0.6880986002 0.5864236956 0.7053653314 0.6601776582 0.7165489356 0.4424975217 0.1776263555 0.1776263555 0.6696913075 0.6696913075 0.05754473198 0.6548883155 0.5007080999 0.6919413019 0.5141612167 0.6870402928 0.6292874287 0.6659318436 0.6899589762 0.3501621083 0.6092515143 0.4593470049 0.5585356206 0.5225892549 0.5558008736 0.5297368695 0.5259817489 0.5572962657 0.2996959382 0.2996959382 0.3748616614 0.5160947665 0.2732445609 0.6471496236 0.6724883695 0.6752670342 0.6626569172 0.6598416335 0.6989878537 0.7012402696 0.6740233499 0.6442106534 0.6993919974 0.724630114 0.7207996842 0.7077272726 0.718273159 0.7191070619 0.7402700608 0.7197363935 0.6877679104 0.6609155552 0.6995189578 0.7213145847 0.6611493744 0.5388340604 0.5388340604 0.5940360302 0.5545791827 0.5080234583 0.475267783 0.4988449592 0.5161972764 0.6120340425 0.3359396527 0.1021305087 0.365369296 0.3656644508 0.1375614977 0.1517976224 0.234394327 0.3862350343 0.4254559494 0.4488352612 0.3952102035 0.5454001444 0.5862580261 0.571716917 0.5782419509 0.56199146 0.56199146 0.4954180492 0.5997956824 0.5997956824 0.3597794026 0.3964263491 0.445343257 0.5962203995 0.5117619915 0.5293027449 0.5335850552 0.4726575565 0.3191020867 0.4413434539 0.2606746378 0.4448299379 0.4190061465 0.3597133201 0.2915269976 0.1754596793 0.1754596793 0.3665134198 0.4384603493 0.4584705392 0.4762747126 0.4762747126 0.3285032 0.4432483435 0.3846764958 0.4537279495 0.2782236805 0.3504732291 0.07836776418 0.1634513912 0.2201325052 0.2191529104 0.3555924523 0.3360464328 0.3434231967 0.3381561027 0.507845237 0.5528538972 0.5636373318 0.5574676619 0.5290003431 0.5954949901 0.6519625636 0.6666354915 0.6357284508 0.6357284508 0.6181659835 0.5875521833 0.5584015625 0.6264876992 0.5745060808 0.5745060808 0.3760464113 0.508522945 0.5124758809 0.6043237714 0.6018519104 0.6311388822 0.6130897637 0.5137309038 0.5648905136 0.5260726858 0.5445459659 0.5275460891 0.5792293319 0.5608029456 0.5022490724 0.173943388 0.2403450492 0.2403450492 0.4709487 0.4709487 0.5841772321 0.6061222871 0.5491114321 0.5283596689 0.5336317931 0.5427567573 0.5203840923}}
+  missing {{curve x1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0}}
+  ready true
+  externalOutput false
+  repairStoredTiming false
+  matchedCount 233
+  missingCount 19
+  reviewCount 59
+  analysisRevision 3
+  status "Stored timing / 1 image holds / 19 missing source frames / 59 review frames / 0 reverse steps / no Mask"
+  reportFile ""
+  name Analyzer
+  label "ANALYSIS / EXPORT ONLY\nMatch: Source \[frame] -> Result \[format %.0f \[value inputFrame]]\nMatched \[value matchedCount] / \[expr \{\[value sourceLast]-\[value sourceFirst]+1\}] | Missing \[value missingCount]"
+  xpos 150
+  ypos 120
+  addUserKnob {20 User}
+  addUserKnob {1 fm_export_id l "" +STARTLINE +HIDDEN}
+  fm_export_id c467ff839c4448c78a35870cd6d2e773
+  setKnobFlags {fm_export_id +HIDDEN}
+  addUserKnob {3 fm_export_revision l "" +STARTLINE +HIDDEN}
+  fm_export_revision 3
+  setKnobFlags {fm_export_revision +HIDDEN}
+  addUserKnob {26 fm_output_status l "TimeWarp output" T "Analyze frames to create the output node."}
+ }
+push $Na3fca900
+ Output {
+  name Output1
+  xpos 0
+  ypos 260
+ }
+end_group
+push $N649e0000
+Transform {
+ translate {-17.07103729 0.6553754807}
+ scale {1.017075658 1.00130403}
+ name Transform_FrameMatch
+ note_font Verdana
+ xpos 0
+ ypos 100
+ addUserKnob {20 User}
+ addUserKnob {1 fm_auto_owner l "" +STARTLINE +HIDDEN}
+ fm_auto_owner b4c304f954db468caadba880072b43ae
+ addUserKnob {1 fm_auto_role l "" +STARTLINE +HIDDEN}
+ fm_auto_role Transform
+}
+Reformat {
+ type "to box"
+ box_width 1920
+ box_height 1080
+ box_fixed true
+ resize none
+ center false
+ name Reformat_FrameMatch
+ note_font Verdana
+ xpos 0
+ ypos 190
+ addUserKnob {20 User}
+ addUserKnob {1 fm_auto_owner l "" +STARTLINE +HIDDEN}
+ fm_auto_owner b4c304f954db468caadba880072b43ae
+ addUserKnob {1 fm_auto_role l "" +STARTLINE +HIDDEN}
+ fm_auto_role Reformat
+}
+TimeWarp {
+ lookup {{curve K x1 1 2 3 4 5 6 7 8 9 9 10 12 13 14 15 16 17 18 19 20 21 22 23 24 24 25 26 27 28 29 30 31 32 33 34 35 37 38 39 40 41 42 43 44 45 46 46 47 48 49 49 51 52 53 54 55 56 57 58 60 61 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 79 80 81 82 84 85 86 87 88 89 90 91 92 93 94 95 95 97 97 98 99 100 101 102 103 104 105 107 108 109 110 111 112 113 114 115 116 117 117 118 119 120 121 122 123 124 125 126 127 128 129 131 132 133 134 135 136 137 138 139 140 141 142 143 144 144 145 146 147 148 149 150 151 152 153 154 155 156 158 159 160 161 162 163 164 165 166 167 168 168 169 170 170 171 172 173 174 176 177 178 179 181 182 183 184 185 186 187 188 188 189 190 191 192 192 193 194 195 196 197 198 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 216 217 218 219 220 221 221 222 224 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 240 241 241 242 243 244 246 247 248 249}}
+ time ""
+ filter nearest
+ name TimeWarp_FrameMatch
+ label "Source \[frame] -> Change \[value lookup]"
+ xpos 0
+ ypos 280
+ addUserKnob {20 User}
+ addUserKnob {1 fm_auto_owner l "" +STARTLINE +HIDDEN}
+ fm_auto_owner b4c304f954db468caadba880072b43ae
+ addUserKnob {1 fm_auto_role l "" +STARTLINE +HIDDEN}
+ fm_auto_role TimeWarp
+}
+set N649e0f00 [stack 0]
+push $Na3fa8000
+push $N649e0f00
+Group {
+ name RIFE_Fill_Gaps
+ label "RIFE GAP FILL / EXPORTED\n\[value gap_count] gaps / \[value generated_count] new frames\nUnresolved: \[value unresolved_count]"
+ xpos 0
+ ypos 370
+ addUserKnob {20 User}
+ addUserKnob {1 fm_rife_id l "" +STARTLINE +HIDDEN}
+ fm_rife_id c0d8128872dc49a7978c6911c88c7395
+ addUserKnob {3 gap_count l "Gap segments" +DISABLED}
+ gap_count 18
+ addUserKnob {3 generated_count l "Frames to synthesize" +DISABLED}
+ generated_count 19
+ addUserKnob {3 unresolved_count l "Missing without two endpoints" +DISABLED}
+ addUserKnob {26 note l "" +STARTLINE T "Connect the exported TimeWarp output here. One input supplies both gap endpoints and unchanged frames."}
+ addUserKnob {1 fm_auto_owner l "" +STARTLINE +HIDDEN}
+ fm_auto_owner b4c304f954db468caadba880072b43ae
+ addUserKnob {1 fm_auto_role l "" +STARTLINE +HIDDEN}
+ fm_auto_role RIFE
+}
+ Input {
+  inputs 0
+  name TimeWarp
+  xpos 0
+ }
+set N649dc480 [stack 0]
+ FrameHold {
+  firstFrame 245
+  name Right_245
+  xpos 6600
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 242
+  name Left_242
+  xpos 6460
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_17
+  xpos 6460
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_243_244
+  label "Source 243..244: 2 new frames\nResult endpoints 240 / 241"
+  selected true
+  xpos 6460
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 242) / 3.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 226
+  name Right_226
+  xpos 6220
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 224
+  name Left_224
+  xpos 6080
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_16
+  xpos 6080
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_225_225
+  label "Source 225..225: 1 new frames\nResult endpoints 221 / 222"
+  xpos 6080
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 224) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 220
+  name Right_220
+  xpos 5840
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 218
+  name Left_218
+  xpos 5700
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_15
+  xpos 5700
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_219_219
+  label "Source 219..219: 1 new frames\nResult endpoints 216 / 217"
+  xpos 5700
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 218) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 196
+  name Right_196
+  xpos 5460
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 194
+  name Left_194
+  xpos 5320
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_14
+  xpos 5320
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_195_195
+  label "Source 195..195: 1 new frames\nResult endpoints 192 / 193"
+  xpos 5320
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 194) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 191
+  name Right_191
+  xpos 5080
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 189
+  name Left_189
+  xpos 4940
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_13
+  xpos 4940
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_190_190
+  label "Source 190..190: 1 new frames\nResult endpoints 188 / 189"
+  xpos 4940
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 189) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 174
+  name Right_174
+  xpos 4700
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 172
+  name Left_172
+  xpos 4560
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_12
+  xpos 4560
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_173_173
+  label "Source 173..173: 1 new frames\nResult endpoints 170 / 171"
+  xpos 4560
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 172) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 171
+  name Right_171
+  xpos 4320
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 169
+  name Left_169
+  xpos 4180
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_11
+  xpos 4180
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_170_170
+  label "Source 170..170: 1 new frames\nResult endpoints 168 / 169"
+  xpos 4180
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 169) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 156
+  name Right_156
+  xpos 3940
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 154
+  name Left_154
+  xpos 3800
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_10
+  xpos 3800
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_155_155
+  label "Source 155..155: 1 new frames\nResult endpoints 152 / 154"
+  xpos 3800
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 154) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 147
+  name Right_147
+  xpos 3560
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 145
+  name Left_145
+  xpos 3420
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_9
+  xpos 3420
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_146_146
+  label "Source 146..146: 1 new frames\nResult endpoints 144 / 145"
+  xpos 3420
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 145) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 120
+  name Right_120
+  xpos 3180
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 118
+  name Left_118
+  xpos 3040
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_8
+  xpos 3040
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_119_119
+  label "Source 119..119: 1 new frames\nResult endpoints 117 / 118"
+  xpos 3040
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 118) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 100
+  name Right_100
+  xpos 2800
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 98
+  name Left_98
+  xpos 2660
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_7
+  xpos 2660
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_99_99
+  label "Source 99..99: 1 new frames\nResult endpoints 97 / 98"
+  xpos 2660
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 98) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 98
+  name Right_98
+  xpos 2420
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 96
+  name Left_96
+  xpos 2280
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_6
+  xpos 2280
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_97_97
+  label "Source 97..97: 1 new frames\nResult endpoints 95 / 97"
+  xpos 2280
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 96) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 82
+  name Right_82
+  xpos 2040
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 80
+  name Left_80
+  xpos 1900
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_5
+  xpos 1900
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_81_81
+  label "Source 81..81: 1 new frames\nResult endpoints 79 / 80"
+  xpos 1900
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 80) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 63
+  name Right_63
+  xpos 1660
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 61
+  name Left_61
+  xpos 1520
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_4
+  xpos 1520
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_62_62
+  label "Source 62..62: 1 new frames\nResult endpoints 61 / 62"
+  xpos 1520
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 61) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 52
+  name Right_52
+  xpos 1280
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 50
+  name Left_50
+  xpos 1140
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_3
+  xpos 1140
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_51_51
+  label "Source 51..51: 1 new frames\nResult endpoints 49 / 51"
+  xpos 1140
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 50) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 48
+  name Right_48
+  xpos 900
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 46
+  name Left_46
+  xpos 760
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_2
+  xpos 760
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_47_47
+  label "Source 47..47: 1 new frames\nResult endpoints 46 / 47"
+  xpos 760
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 46) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 26
+  name Right_26
+  xpos 520
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 24
+  name Left_24
+  xpos 380
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_1
+  xpos 380
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_25_25
+  label "Source 25..25: 1 new frames\nResult endpoints 24 / 25"
+  xpos 380
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 24) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 11
+  name Right_11
+  xpos 140
+  ypos 100
+ }
+push $N649dc480
+ FrameHold {
+  firstFrame 9
+  name Left_9
+  xpos 0
+  ypos 100
+ }
+ Switch {
+  inputs 2
+  which {{"frame < 2 ? 0 : 1"}}
+  name Endpoint_Pair_0
+  xpos 0
+  ypos 180
+ }
+ FrameMatchRIFE {
+  name RIFE_10_10
+  label "Source 10..10: 1 new frames\nResult endpoints 9 / 10"
+  xpos 0
+  ypos 260
+  out 2
+  timing Frame
+  timingFrame {{"1 + clamp((frame - 9) / 2.0, 0, 1)"}}
+  outputFrame {{timingFrame}}
+  skipKeyframes true
+ }
+push $N649dc480
+ Switch {
+  inputs 2
+  which {{"frame >= 10 && frame <= 10"}}
+  name Fill_10_10
+  xpos 0
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 25 && frame <= 25"}}
+  name Fill_25_25
+  xpos 380
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 47 && frame <= 47"}}
+  name Fill_47_47
+  xpos 760
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 51 && frame <= 51"}}
+  name Fill_51_51
+  xpos 1140
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 62 && frame <= 62"}}
+  name Fill_62_62
+  xpos 1520
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 81 && frame <= 81"}}
+  name Fill_81_81
+  xpos 1900
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 97 && frame <= 97"}}
+  name Fill_97_97
+  xpos 2280
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 99 && frame <= 99"}}
+  name Fill_99_99
+  xpos 2660
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 119 && frame <= 119"}}
+  name Fill_119_119
+  xpos 3040
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 146 && frame <= 146"}}
+  name Fill_146_146
+  xpos 3420
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 155 && frame <= 155"}}
+  name Fill_155_155
+  xpos 3800
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 170 && frame <= 170"}}
+  name Fill_170_170
+  xpos 4180
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 173 && frame <= 173"}}
+  name Fill_173_173
+  xpos 4560
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 190 && frame <= 190"}}
+  name Fill_190_190
+  xpos 4940
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 195 && frame <= 195"}}
+  name Fill_195_195
+  xpos 5320
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 219 && frame <= 219"}}
+  name Fill_219_219
+  xpos 5700
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 225 && frame <= 225"}}
+  name Fill_225_225
+  xpos 6080
+  ypos 380
+ }
+ Switch {
+  inputs 2
+  which {{"frame >= 243 && frame <= 244"}}
+  name Fill_243_244
+  xpos 6460
+  ypos 380
+ }
+ Output {
+  name Output1
+  xpos 6460
+  ypos 480
+ }
+end_group
+Viewer {
+ inputs 3
+ name Viewer1
+ xpos 0
+ ypos 490
+}

@@ -1,0 +1,107 @@
+set cut_paste_input [stack 0]
+version 17.0 v3
+push $cut_paste_input
+Group {
+ name FrameMatch
+ knobChanged "import frame_match_complete as fm\nfm.changed(nuke.thisNode(),nuke.thisKnob())"
+ label "Source \[frame] -> Change \[value mapped_frame]"
+ selected true
+ addUserKnob {20 frame_match l "Frame Match"}
+ addUserKnob {6 fm_complete_tool l "" -STARTLINE +HIDDEN}
+ fm_complete_tool true
+ addUserKnob {6 spatial_ready l "" -STARTLINE +HIDDEN}
+ addUserKnob {1 spatial_data l "" +STARTLINE +HIDDEN}
+ addUserKnob {3 reference_frame l "Reference frame"}
+ reference_frame 1
+ addUserKnob {22 use_current l Current -STARTLINE T "import frame_match_complete as fm\nnuke.thisNode()\['reference_frame'].setValue(nuke.frame())"}
+ addUserKnob {6 use_mask l "Use mask" t "Use Mask for MatchGrade alignment only." -STARTLINE}
+ use_mask true
+ addUserKnob {22 align l "Analyze align" T "import frame_match_complete as fm\nfm.align(nuke.thisNode())" +STARTLINE}
+ addUserKnob {22 analyze l "Analyze timing" -STARTLINE T "import frame_match_complete as fm\nfm.analyze_timing(nuke.thisNode())"}
+ addUserKnob {3 source_first l "Source range"}
+ source_first 1
+ addUserKnob {3 source_last l "" -STARTLINE}
+ source_last 252
+ addUserKnob {22 reset_source l Reset -STARTLINE T "import frame_match_complete as fm\nfm.reset_range(nuke.thisNode(), 'source')"}
+ addUserKnob {3 result_first l "Change range"}
+ result_first 1
+ addUserKnob {3 result_last l "" -STARTLINE}
+ result_last 249
+ addUserKnob {22 reset_result l Reset -STARTLINE T "import frame_match_complete as fm\nfm.reset_range(nuke.thisNode(), 'result')"}
+ addUserKnob {3 mapped_frame l "Matched change frame" +HIDDEN}
+ addUserKnob {3 matched_count l "Matched source frames" +HIDDEN}
+ addUserKnob {3 missing_count l "Missing source frames" +HIDDEN}
+ addUserKnob {3 review_count l "Review frames" +HIDDEN}
+ addUserKnob {3 fill_count l "RIFE frames" +HIDDEN}
+ addUserKnob {3 unresolved_count l "Without endpoints" +HIDDEN}
+ addUserKnob {26 state l Timing +HIDDEN T "Not analyzed"}
+ addUserKnob {26 spatial_status l Alignment +HIDDEN T "Not analyzed"}
+ addUserKnob {26 exports l Export T " "}
+ addUserKnob {22 export_spatial l Align -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'spatial')"}
+ addUserKnob {22 export_timewarp l TimeWarp -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'timewarp')"}
+ addUserKnob {22 export_rife l RIFE -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'rife')"}
+ addUserKnob {22 export_all l "Export all" -STARTLINE T "import frame_match_complete as fm\nfm.export(nuke.thisNode(), 'all')"}
+ addUserKnob {26 results l "" +STARTLINE T "<b>Results</b><br>Not analyzed."}
+ addUserKnob {20 settings l Settings}
+ addUserKnob {6 rife_gpu l "RIFE GPU" -STARTLINE}
+ rife_gpu true
+ addUserKnob {3 rife_detail l "RIFE detail" R 0 4}
+ rife_detail 3
+ addUserKnob {4 rife_downrez l "RIFE resolution" M {Full 1/2 1/4}}
+ addUserKnob {26 help l "" +STARTLINE T "Change = changed video; Source = original. Mask is used for alignment only.\nTiming uses saved alignment if available; otherwise Change directly. No timing Mask. Analysis stores data only. Output passes Change through unchanged.\nAnalyze automatically creates or updates connected outputs below Change. Manual Export makes independent copies.\nReanalyze after changing inputs. Counts are matching candidates."}
+}
+ Input {
+  inputs 0
+  name Mask
+  xpos 600
+  number 2
+ }
+ Input {
+  inputs 0
+  name Source
+  xpos 300
+  number 1
+ }
+ Input {
+  inputs 0
+  name Change
+  xpos 0
+ }
+set Na5ddb680 [stack 0]
+ OFXcom.matchframe.FrameMatch_v1 {
+  inputs 2
+  sourceFirst 1
+  sourceLast 252
+  resultFirst 1
+  resultLast 249
+  timingPreference 0.15
+  inputFrame 1
+  confidence 0
+  missing 0
+  ready false
+  externalOutput false
+  matchedCount 0
+  missingCount 0
+  reviewCount 0
+  analysisRevision 0
+  status "Ready. Analyze after upstream changes. Low confidence needs review."
+  reportFile ""
+  name Analyzer
+  label "ANALYSIS / EXPORT ONLY\nMatch: Source \[frame] -> Result \[format %.0f \[value inputFrame]]\nMatched \[value matchedCount] / \[expr \{\[value sourceLast]-\[value sourceFirst]+1\}] | Missing \[value missingCount]"
+  selected true
+  xpos 150
+  ypos 120
+  addUserKnob {20 User}
+  addUserKnob {1 fm_export_id l "" +STARTLINE +HIDDEN}
+  fm_export_id 890c19a837cf44b5811417406804d3fb
+  setKnobFlags {fm_export_id +HIDDEN}
+  addUserKnob {3 fm_export_revision l "" +STARTLINE +HIDDEN}
+  addUserKnob {26 fm_output_status l "TimeWarp output" T "Analyze frames to create the output node."}
+ }
+push $Na5ddb680
+ Output {
+  name Output1
+  xpos 0
+  ypos 260
+ }
+end_group

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+build/
+*.nk.autosave
+*.nk~
+*.log
+.env*
+*.cat
+*.pt
+*.pth
+*.exr
+*.mov
+*.mp4
+*.zip
+!docs/media/*.mp4

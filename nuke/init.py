@@ -1,0 +1,2 @@
+import frame_match_ofx_bridge
+frame_match_ofx_bridge.register()
